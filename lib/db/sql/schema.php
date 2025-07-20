@@ -998,9 +998,9 @@ class TableModifier extends TableBuilder {
 	 */
 	public function dropIndex($name) {
 		if (is_array($name))
-			$name=$this->name.'___'.implode('__',$name);
+			$name=$this->assembleIndexKey($name,$this->name);
 		elseif (!is_int(strpos($name,'___')))
-			$name=$this->name.'___'.$name;
+			$name=$this->assembleIndexKey($name,$this->name);
 		$name=$this->db->quotekey($name);
 		$table=$this->db->quotekey($this->name);
 		$cmd=[
